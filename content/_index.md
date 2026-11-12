@@ -39,8 +39,6 @@ We are always interested in working with motivated students and collaborators in
 - **Undergraduate students**: Opportunities for research projects and internships.
 - **Collaborators**: We welcome academic and industrial collaborations.
 
-To get in touch, contact [Prof. Haniel Barbosa](https://hanielbarbosa.com/).
-
 ## Location {#location}
 
 Departamento de Ciência da Computação (DCC)  
