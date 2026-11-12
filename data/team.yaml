@@ -12,6 +12,21 @@ group_photo:
   image: img/team/team_2026.jpg
   caption: The SMITE team in 2026.
 
+# Groups of the "Current members" list, in this order, each with its subheading.
+# A member goes in the group that lists their role; members whose role is in no group are
+# shown at the end under "Other members".
+groups:
+  - title: Professor
+    roles: [Tenured Assistant Professor]
+  - title: Post-docs and PhD students
+    roles: [Post-doctoral scholar, PhD student]
+  - title: MSc students
+    roles: [MSc student]
+  - title: Research engineers
+    roles: [Research Engineer]
+  - title: Undergraduate researchers
+    roles: [Undergraduate researcher]
+
 current:
   - name: Haniel Barbosa
     role: Tenured Assistant Professor

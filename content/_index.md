@@ -1,12 +1,13 @@
 ---
-title: "Home"
+title: "SMITE Research Group"
+description: "SMITE is a research group at DCC/UFMG working on formal methods, SMT solving, proof systems and automated reasoning."
 ---
 
 <span id="top"></span>
 
-<div class="hero">
-    <img src="img/logo/smite-logo-tag-1-cinza@2x.png" alt="SMITE Logo" style="opacity:1;">
-</div>
+<h1 class="hero">
+    <img src="img/logo/smite-logo-tag-1-cinza@2x.png" alt="SMITE – Research Group on Logical Reasoning and Proofs" width="1684" height="964">
+</h1>
 
 
 ## About {#about}
@@ -63,6 +64,7 @@ Belo Horizonte, Minas Gerais – Brazil
 
 <div style="margin-top:20px;">
   <iframe
+    title="Map showing the Department of Computer Science (DCC) at UFMG"
     src="https://www.google.com/maps?q=Av.+Antônio+Carlos,+6627+Belo+Horizonte&output=embed"
     width="100%"
     height="300"

@@ -1,14 +1,42 @@
+
 {{ with site.Data.team.group_photo }}
+{{- /* The column is at most 720px wide: serve the photo at 1440px (2x) instead of full size. */ -}}
+{{- $src := .image | relURL -}}
+{{- $w := "" -}}
+{{- $h := "" -}}
+{{- with resources.Get .image -}}
+  {{- $r := . -}}
+  {{- if gt .Width 1440 }}{{ $r = .Resize "1440x" }}{{ end -}}
+  {{- $src = $r.RelPermalink -}}
+  {{- $w = $r.Width -}}
+  {{- $h = $r.Height -}}
+{{- end }}
 <figure class="team-photo">
-  <img src="{{ .image | relURL }}" alt="{{ .caption | default "SMITE team" }}" loading="lazy">
+  <img src="{{ $src }}" alt="{{ .caption | default "SMITE team" }}"{{ with $w }} width="{{ . }}"{{ end }}{{ with $h }} height="{{ . }}"{{ end }} loading="lazy" decoding="async">
   {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
 {{ end }}
 
+{{- /* Current members, in the groups of data/team.yaml (subheading + grid of cards).
+       Members whose role is in no group are shown last, under "Other members". */ -}}
+{{- $current := site.Data.team.current -}}
+{{- $grouped := slice -}}
+{{- range site.Data.team.groups }}{{ $grouped = $grouped | append .roles }}{{ end -}}
 <h3 id="current-members">Current members</h3>
+{{ range $g := site.Data.team.groups }}
+  {{- with where $current "role" "in" $g.roles }}
+<h4 class="team-group">{{ $g.title }}</h4>
 <div class="team-grid">
-  {{ range site.Data.team.current }}{{ partial "team-member.html" . }}{{ end }}
+  {{ range . }}{{ partial "team-member.html" . }}{{ end }}
 </div>
+  {{- end }}
+{{ end }}
+{{- with where $current "role" "not in" $grouped }}
+<h4 class="team-group">Other members</h4>
+<div class="team-grid">
+  {{ range . }}{{ partial "team-member.html" . }}{{ end }}
+</div>
+{{- end }}
 
 {{ with site.Data.team.past }}
 <h3 id="past-members">Past members</h3>
