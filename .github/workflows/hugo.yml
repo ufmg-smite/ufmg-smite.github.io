@@ -22,6 +22,15 @@ jobs:
       - name: Generate publications data from bib/publications.bib
         run: python3 scripts/bib2json.py
 
+      - name: Refuse slides larger than 2 MB
+        run: |
+          too_big=$(find static/slides -type f -size +2097152c 2>/dev/null)
+          if [ -n "$too_big" ]; then
+            echo "::error::Slides must be at most 2 MB:"
+            ls -lh $too_big
+            exit 1
+          fi
+
       - name: Build
         run: hugo --minify
 

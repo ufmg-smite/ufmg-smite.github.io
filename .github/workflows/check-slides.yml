@@ -1,0 +1,22 @@
+name: Check slide sizes
+
+on:
+  pull_request:          # every pull request, before it is merged
+  push:
+    branches: [main]
+
+jobs:
+  slide-sizes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refuse slides larger than 2 MB
+        run: |
+          too_big=$(find static/slides -type f -size +2097152c 2>/dev/null)
+          if [ -n "$too_big" ]; then
+            echo "::error::Slides must be at most 2 MB. Compress these files before adding them:"
+            ls -lh $too_big
+            exit 1
+          fi
+          echo "All slides are at most 2 MB."
