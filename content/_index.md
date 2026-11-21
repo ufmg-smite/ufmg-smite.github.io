@@ -3,8 +3,6 @@ title: "SMITE Research Group"
 description: "SMITE is a research group at DCC/UFMG working on formal methods, SMT solving, proof systems and automated reasoning."
 ---
 
-<span id="top"></span>
-
 <h1 class="hero">
     <img src="img/logo/smite-logo-tag-1-cinza@2x.png" alt="SMITE – Research Group on Logical Reasoning and Proofs" width="1684" height="964">
 </h1>

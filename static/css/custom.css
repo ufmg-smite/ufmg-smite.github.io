@@ -14,8 +14,6 @@
 
 :root {
   color-scheme: dark;
-  /* no elastic bounce past the page edges, which showed a dark band above the red hero */
-  overscroll-behavior-y: none;
   --bg: #101820;
   --accent-bg: #971b2f;
   --text: #d9d9d6;
@@ -46,13 +44,22 @@ body > header > *:only-child {
   margin-block-start: 1rem;
 }
 
+/* The elastic bounce of touch screens and trackpads shows the page's background colour past
+   its edges. Near the top it is the red of the header and hero, rather than a dark band
+   (html.near-top, set by the script in custom_body.html); near the bottom it stays dark like
+   the footer. The body keeps the dark background, so this colour is not seen otherwise.
+   Used instead of overscroll-behavior: none, which would also disable pull-to-refresh. */
+html.near-top {
+  background-color: var(--accent-bg);
+}
+
 header nav {
   padding: 0;
 }
 
-/* Top menu (layouts/partials/nav.html): boxed buttons on a single line at every width;
-   the ones that do not fit go into the ☰ dropdown (script in layouts/partials/custom_body.html).
-   Without JavaScript the buttons simply wrap. */
+/* Top menu (layouts/partials/nav.html): the sections are links on a single line at every
+   width; the ones that do not fit go into the ☰ dropdown (script in
+   layouts/partials/custom_body.html). Without JavaScript the links simply wrap. */
 body > header nav {
   display: flex;
   justify-content: center;
@@ -127,19 +134,12 @@ header nav a[aria-current="true"],
   }
 }
 
-/* Phones: tighter buttons, so that more sections fit before the ☰ dropdown */
+/* Phones: tighter spacing, so that more sections fit before the ☰ dropdown */
 @media only screen and (max-width: 520px) {
   header nav a,
   header nav a:visited {
     margin: 0 0.4rem 1rem 0.4rem;
     padding: 0.1rem 0.1rem;
-    font-size: 0.95rem;
-  }
-
-  .nav-more-button,
-  .nav-more-button:enabled:hover {
-    margin: 0 0.2rem 1rem 0.2rem;
-    padding: 0.1rem 0.6rem;
     font-size: 0.95rem;
   }
 }
@@ -212,7 +212,7 @@ header nav a[aria-current="true"],
 }
 
 /* the section in view (aria-current, set by the script in custom_body.html) is only
-   coloured inside the dropdown; in the bar the theme gives it the accent border */
+   coloured inside the dropdown; in the bar it also gets the accent underline (see above) */
 .nav-more-menu a[aria-current="true"] {
   background: none;
   border-color: transparent;
@@ -254,13 +254,15 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* The strip is the page's <h1>. Its background is extended to both edges of the window with
    a clipped box-shadow rather than width: 100vw, which counts the scrollbar and made the
-   page scroll sideways. */
+   page scroll sideways. The red also goes up to the top of the page: that part is hidden
+   under the fixed header, but the elastic bounce at the top would otherwise show it as a
+   dark band between the header and the strip. */
 .hero {
-  margin: 0;
+  margin: 24px 0 0 0;  /* the gap under the fixed header */
   padding: 0;
   background-color: var(--accent-bg);
   box-shadow: 0 0 0 100vmax var(--accent-bg);
-  clip-path: inset(0 -100vmax);
+  clip-path: inset(-100vmax -100vmax 0 -100vmax);
   text-align: center;
 }
 
@@ -547,7 +549,7 @@ html:not(.hover-js) .pub-content li:hover,
 /* "Show 8 more publications / seminars" button, added under the list by the script in
    custom_body.html, which also hides the items not shown yet (hidden attribute; the rule
    below is needed because .pub-row and .seminar-row set their own display).
-   The button looks like the ones in the menu (overrides the theme's button style). */
+   A plain bordered box, accent-coloured on hover (overrides the theme's button style). */
 [data-more-item] [hidden] {
   display: none;
 }

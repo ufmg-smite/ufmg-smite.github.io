@@ -111,6 +111,22 @@
     update();
   })();
 
+  /* Page background red in the upper half of the scroll, dark in the lower half, so that the
+     elastic bounce at either end shows the colour of that end (html.near-top in custom.css). */
+  (function () {
+    var root = document.documentElement, pending = false;
+    function update() {
+      pending = false;
+      root.classList.toggle("near-top", window.scrollY < (root.scrollHeight - window.innerHeight) / 2);
+    }
+    function schedule() {
+      if (!pending) { pending = true; requestAnimationFrame(update); }
+    }
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    update();
+  })();
+
   /* Long lists (publications, seminars): show the first data-more-initial items and add a
      button that reveals data-more-step more per click; once everything is shown, the
      button folds the list back. A group (a year of publications) is hidden while none of
