@@ -33,8 +33,9 @@
     - speaker: Tomaz Mascarenhas
       title: Proofs for Cylindrical Algebraic Decomposition
       slides: slides/20261023-tomaz-proofs-cad.pdf
-    - speaker: Augusto Guerra de Lima
-      topic: A Sums-of-Squares Approach for Solving Non-Linear Problems
+    - speaker: Augusto Guerra
+      title: "SOS! Sum-of-squares: Verifying nonlinear real formulas"
+      slides: slides/20261023-augusto-sos-sum-of-squares.pdf
   papers:
     - title: Bit-Precise Interpolation in Bitwuzla
       authors: Aina Niemetz, Mathias Preiner

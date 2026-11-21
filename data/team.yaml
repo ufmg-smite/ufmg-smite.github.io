@@ -106,10 +106,10 @@ current:
     bibtex: https://dblp.org/pid/135/4292.bib
     description: Works on small congruence closure proofs, proof checking, and proof elaboration.
 
-  - name: Augusto Guerra de Lima
+  - name: Augusto Guerra
     role: Undergraduate researcher
     url: https://homepages.dcc.ufmg.br/~augustoguerra/
-    image: img/team/augusto_guerra_de_lima.jpg
+    image: img/team/augusto_guerra.jpg
 
   - name: Izabela Fonseca
     role: Undergraduate researcher
